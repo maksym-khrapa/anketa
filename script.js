@@ -87,7 +87,7 @@ document.querySelector('.send-btn').addEventListener('click', () => {
   }
 })
 .then(() => {
-  allert("Send");
+  alert("Відповіді відправлені 💛");
 })
 .catch(err => {
   alert('Помилка відправки 😢');

@@ -2,6 +2,13 @@
 * { box-sizing: border-box; }
 body { margin: 0; font-family: 'Poppins', sans-serif; }
 
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* 🔥 прибирає білу полоску */
+    overflow-x: hidden;
+}
+
 /* ===== ПРОГРЕС-БАР ===== */
 .progress-container {
     position: fixed;
@@ -21,7 +28,11 @@ body { margin: 0; font-family: 'Poppins', sans-serif; }
 
 /* ===== HERO SECTION ===== */
 .survey-hero {
-    position: absolute;
+    position: fixed;
+    inset: 0;
+    min-height: 100svh;
+    overflow: hidden;
+    background-attachment: scroll;
     inset: 0;
     display: flex;
     align-items: center;
@@ -30,12 +41,10 @@ body { margin: 0; font-family: 'Poppins', sans-serif; }
     background-image: url("https://images.unsplash.com/photo-1506744038136-46273834b3fb");
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
     opacity: 0;
     pointer-events: none;
     transform: translateY(2vh); /* адаптивний зсув */
     transition: opacity 0.5s ease, transform 0.5s ease;
-    height: 100vh;
 }
 .survey-hero.active {
     opacity: 1;
@@ -53,25 +62,43 @@ body { margin: 0; font-family: 'Poppins', sans-serif; }
 .survey-content {
     position: relative;
     z-index: 2;
-    width: 90%;
+    width: 92%;
     max-width: 760px;
+
     text-align: center;
     color: #ffffff;
     background: rgba(0,0,0,0.35);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border-radius: 2rem;
+    
+    border-radius: 1.2rem;
     border: 1px solid rgba(255,255,255,0.15);
-    box-shadow: 0 5vw 8vw rgba(0,0,0,0.35); /* адаптивний shadow */
-    padding: 5vw 6vw 7vw; /* адаптивний padding */
+    box-shadow: 0 1.2rem 3rem rgba(0,0,0,0.35);
+   
+    max-height: 90svh;      /* ⬅ не вилізе */
+    overflow-y: auto;       /* ⬅ скрол всередині */
+    overscroll-behavior: contain;
+
+    
+    padding: clamp(1rem, 2.5vw, 1.6rem);
+
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: clamp(0.5rem, 1.4vw, 0.9rem);
+
 }
+
+
+
 
 /* ===== TITLES ===== */
 .survey-title { 
-    font-size: clamp(2rem, 4vw, 3rem); 
+    font-size: clamp(1.6rem, 3.5vw, 2.3rem); 
     font-weight:700; 
     line-height:1.2; 
-    margin-bottom:2vw; 
+    margin-bottom:1vw; 
 }
 strong {color:#ffd87d;}
 .survey-title span { color:#ffffff; }
@@ -86,19 +113,21 @@ strong {color:#ffd87d;}
 
 /* ===== INPUT ===== */
 .survey-input { 
-    padding: 12px 16px; 
-    border-radius: 12px; 
-    border:none;  
-    margin-bottom: 3vw; 
-    font-size: 1rem; 
+    width: 100%;
+    padding: 0.65rem 0.9rem;
+    font-size: 0.95rem;
+    border-radius: 0.8rem;
+    border: none;
+    margin: 0, auto;
 }
 
 .survey-textarea { 
-    padding: 12px 16px; 
-    border-radius: 12px; 
-    border:none; 
-    margin-bottom: 3vw; 
-    font-size: 1rem; 
+    width: 100%;
+    padding: 0.8rem 1rem;
+    font-size: 0.95rem;
+    border-radius: 0.8rem;
+    border: none;
+    margin: 0, auto;
 }
 
 /* ===== BUTTONS ===== */
@@ -137,7 +166,7 @@ strong {color:#ffd87d;}
 
 
 /* ===== QUESTION BLOCK ===== */
-.question-block { display:flex; flex-direction:column; gap:2vw; margin-bottom:4vw; }
+.question-block { display:flex; flex-direction:column; gap:2vw; margin-bottom:0; }
 .question-title { font-size: clamp(1.2rem, 2.5vw, 1.8rem); font-weight:600; margin-bottom:1.5vw; }
 .option { 
     display:flex; 
@@ -167,15 +196,6 @@ strong {color:#ffd87d;}
     display: grid;
     grid-template-columns: auto 1fr;
     align-items:flex-start;
-    gap:0.75rem; 
-    padding:1rem 1.25rem; 
-    border-radius:1.25rem; 
-    background: rgba(255,255,255,0.1); 
-    color:#ffffff; 
-    font-size:1.05rem; 
-    cursor:pointer; 
-    transition: background 0.3s, transform 0.2s; 
-    flex-wrap: wrap; /* адаптивно */
 }
 
 .option-text {
@@ -201,7 +221,7 @@ strong {color:#ffd87d;}
 /* ===== MEDIA QUERIES ===== */
 @media (max-width: 768px) {
     .survey-content { padding: 6vw 4vw 6vw; }
-    .survey-input { width: 90%; }
+    .survey-input { width: 100%; }
     .survey-start-btn { padding: 1rem 3rem; font-size: 1rem; }
     .option { font-size: 1rem; padding: 0.8rem 1rem; }
 }
@@ -211,4 +231,31 @@ strong {color:#ffd87d;}
     .survey-input { width: 95%; padding: 0.8rem 1rem; font-size: 0.95rem; }
     .survey-start-btn { padding: 0.8rem 2.5rem; font-size: 0.95rem; }
     .option { font-size: 0.95rem; padding: 0.7rem 0.9rem; }
+}
+
+/* ===== FIX SPACING ===== */
+
+.survey-title {
+    margin-bottom: 0.6rem;
+}
+
+.survey-subtitle {
+    margin-bottom: 1.2rem;
+}
+
+.question-block {
+    gap: clamp(0.6rem, 1.5vw, 1rem);
+    margin-bottom: 0;
+}
+
+.button-group {
+    margin-top: clamp(1rem, 3vw, 2rem);
+}
+
+.survey-input,
+.survey-textarea {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 420px;
 }
