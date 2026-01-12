@@ -51,3 +51,46 @@ document.querySelectorAll('.option input').forEach(input => {
         }
     });
 });
+
+const SEND_URL = 'https://script.google.com/macros/s/AKfycbw-Nocnb3IPOrS8EsZAVk2pJumGWP66JGkQm6ib5M1Qa2W1TeZyDF7JtcWq6JBnrgee/exec';
+
+document.querySelector('.send-btn').addEventListener('click', () => {
+
+  const getRadio = name =>
+    document.querySelector(`input[name="${name}"]:checked`)?.value || '';
+
+  const getCheckboxes = name =>
+    [...document.querySelectorAll(`input[name="${name}"]:checked`)]
+      .map(el => el.value);
+
+  const data = {
+    name: document.querySelector('#screen-2 input').value,
+
+    camp2026: getRadio('camp2026'),
+    roles: getCheckboxes('role'),
+    duration: getRadio('duration'),
+    dates: getCheckboxes('dates'),
+    prep: getRadio('prep'),
+    spirit: getRadio('spirit'),
+    spirit_importance: getCheckboxes('spirit_importance'),
+    spirit_prep: getRadio('spirit_prep'),
+    prayer: document.querySelector('#screen-11 textarea').value,
+    word: document.querySelector('#screen-12 textarea').value
+  };
+
+  fetch(SEND_URL, {
+  method: 'POST',
+  mode: 'no-cors',
+  body: JSON.stringify(data),
+  headers: {
+    'Content-Type': 'application/json'
+  }
+})
+.then(() => {
+  allert("Send");
+})
+.catch(err => {
+  alert('Помилка відправки 😢');
+  console.error(err);
+});
+});
