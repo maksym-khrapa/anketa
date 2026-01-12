@@ -1,21 +1,289 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="shortcut icon" href="#" type="image/x-icon">
-    <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Опитування табору 2026</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="header">
-        <nav data-hx-trigger="load" data-hx-swap="outerHTML" data-hx-get="global.header-nav.partial.html"></nav>
-    </header>
-    <main class="main">
-        
-    </main>
-    <footer class="footer">
-        
-    </footer>
+
+<!-- ===== ПРОГРЕС-БАР ===== -->
+<div class="progress-container">
+    <div class="progress-bar" id="progress-bar"></div>
+</div>
+
+<!-- ===== ЕКРАН 1 - ПРИВІТАННЯ ===== -->
+<section class="survey-hero active" id="screen-1">
+    <div class="survey-overlay"></div>
+    <div class="survey-content">
+        <h1 class="survey-title">
+            🏕️ <span>Опитування</span> для команди <span class="accent">табору 2026</span>
+        </h1>
+        <h2 class="survey-subtitle">
+            ☀️ Друзі, ваша відповідь допоможе спланувати табір 2026
+            <strong class="accent">разом</strong> і в <strong class="accent">єдності</strong> 💛
+        </h2>
+        <button class="survey-start-btn" data-next="screen-2">✨ Почати</button>
+    </div>
+</section>
+
+<!-- ===== ЕКРАН 2 - ІМ'Я ===== -->
+<section class="survey-hero" id="screen-2">
+    <div class="survey-overlay"></div>
+    <div class="survey-content">
+        <h1 class="survey-title">✍️ Ваше прізвище та ім'я</h1>
+        <input type="text" class="survey-input" placeholder="Напишіть сюди...">
+        <div class="button-group">
+            <button class="survey-start-btn back-btn" data-prev="screen-1">⬅ Назад</button>
+            <button class="survey-start-btn" data-next="screen-3">Далі ➡</button>
+        </div>
+    </div>
+</section>
+
+<!-- ===== ЕКРАН 3 - ГОТОВНІСТЬ ===== -->
+<section class="survey-hero" id="screen-3">
+    <div class="survey-overlay"></div>
+    <div class="survey-content">
+        <div class="question-block">
+            <p class="question-title">1️⃣ Чи готовий/готова ти долучитися до табору 2026? 🌿💛</p>
+            <label class="option"><input type="radio" name="camp2026" value="yes"><span class="checkmark">✅</span> Так</label>
+            <label class="option"><input type="radio" name="camp2026" value="probably"><span class="checkmark">🤔</span> Ймовірно так</label>
+            <label class="option"><input type="radio" name="camp2026" value="not_sure"><span class="checkmark">❓</span> Поки не знаю</label>
+            <label class="option"><input type="radio" name="camp2026" value="no"><span class="checkmark">🚫</span> Ні</label>
+        </div>
+        <div class="button-group">
+            <button class="survey-start-btn back-btn" data-prev="screen-2">⬅ Назад</button>
+            <button class="survey-start-btn" data-next="screen-4-1">Далі ➡</button>
+        </div>
+    </div>
+</section>
+
+<!-- ===== ЕКРАН 4 - РОЛІ (Checkbox) ===== -->
+<section class="survey-hero" id="screen-4-1">
+    <div class="survey-overlay"></div>
+    <div class="survey-content">
+        <div class="question-block">
+            <p class="question-title">2️⃣ У якій ролі тобі було б комфортно служити? 🌟 (можна обрати кілька)</p>
+            <label class="option"><input type="checkbox" name="role" value="leader"><span class="checkmark">👑</span> Лідер групи</label>
+            <label class="option"><input type="checkbox" name="role" value="assistant"><span class="checkmark">🤝</span> Помічник лідера</label>
+            <label class="option"><input type="checkbox" name="role" value="bible"><span class="checkmark">📖</span> Біблійні уроки</label>
+            <label class="option"><input type="checkbox" name="role" value="kitchen"><span class="checkmark">🍳</span> Кухня</label>
+            <label class="option"><input type="checkbox" name="role" value="creative"><span class="checkmark">🎨</span> Творчі майстер-класи</label>
+            <label class="option"><input type="checkbox" name="role" value="sport"><span class="checkmark">🏃‍♂️</span> Спорт / активності</label>
+        </div>
+        <div class="button-group">
+            <button class="survey-start-btn back-btn" data-prev="screen-3">⬅ Назад</button>
+            <button class="survey-start-btn" data-next="screen-4-2">Далі ➡</button>
+        </div>
+    </div>
+</section>
+
+<!-- ===== ЕКРАН 4 - РОЛІ (Checkbox) ===== -->
+<section class="survey-hero" id="screen-4-2">
+    <div class="survey-overlay"></div>
+    <div class="survey-content">
+        <div class="question-block">
+            <p class="question-title">2️⃣ У якій ролі тобі було б комфортно служити? 🌟 (можна обрати кілька)</p>
+            <label class="option"><input type="checkbox" name="role" value="registration"><span class="checkmark">📝</span> Реєстрація / організація</label>
+            <label class="option"><input type="checkbox" name="role" value="creative"><span class="checkmark">🎨</span> Творчі майстер-класи</label>
+            <label class="option"><input type="checkbox" name="role" value="medical"><span class="checkmark">🩺</span> Медицина / безпека</label>
+            <label class="option"><input type="checkbox" name="role" value="tech"><span class="checkmark">💻</span> Технічна команда</label>
+            <label class="option"><input type="checkbox" name="role" value="other"><span class="checkmark">✍️</span> Інше: <input type="text" class="survey-input" placeholder="Напишіть сюди..."> </label>
+        </div>
+        <div class="button-group">
+            <button class="survey-start-btn back-btn" data-prev="screen-4-1">⬅ Назад</button>
+            <button class="survey-start-btn" data-next="screen-5">Далі ➡</button>
+        </div>
+    </div>
+</section>
+
+<!-- ===== ЕКРАН 5 - ТРИВАЛІСТЬ (Radio) ===== -->
+<section class="survey-hero" id="screen-5">
+    <div class="survey-overlay"></div>
+    <div class="survey-content">
+        <div class="question-block">
+            <p class="question-title">3️⃣ Яка тривалість табору для тебе оптимальна? 🕒</p>
+            <label class="option"><input type="radio" name="duration" value="3"><span class="checkmark">3️⃣</span> 3 дні</label>
+            <label class="option"><input type="radio" name="duration" value="4"><span class="checkmark">4️⃣</span> 4 дні</label>
+            <label class="option"><input type="radio" name="duration" value="5"><span class="checkmark">5️⃣</span> 5 днів</label>
+        </div>
+        <div class="button-group">
+            <button class="survey-start-btn back-btn" data-prev="screen-4-2">⬅ Назад</button>
+            <button class="survey-start-btn" data-next="screen-6-1">Далі ➡</button>
+        </div>
+    </div>
+</section>
+
+<!-- ===== ЕКРАН 6 - ДАТИ (Checkbox) ===== -->
+<section class="survey-hero" id="screen-6-1">
+    <div class="survey-overlay"></div>
+    <div class="survey-content">
+        <div class="question-block">
+            <p class="question-title">4️⃣ У які дати ти МОЖЕШ служити? 📅 <br>(можна обрати кілька)</p>
+            <label class="option"><input type="checkbox" name="dates" value="6-7"> 6–7 червня</label>
+            <label class="option"><input type="checkbox" name="dates" value="13-14"> 13–14 червня</label>
+            <label class="option"><input type="checkbox" name="dates" value="20-21"> 20–21 червня</label>
+            <label class="option"><input type="checkbox" name="dates" value="27-28"> 27–28 червня</label>
+        <div class="button-group">
+            <button class="survey-start-btn back-btn" data-prev="screen-5">⬅ Назад</button>
+            <button class="survey-start-btn" data-next="screen-6-2">Далі ➡</button>
+        </div>
+    </div>
+</section>
+<section class="survey-hero" id="screen-6-2">
+    <div class="survey-overlay"></div>
+    <div class="survey-content">
+        <div class="question-block">
+            <p class="question-title">4️⃣ У які дати ти МОЖЕШ служити? 📅 <br>(можна обрати кілька)</p>
+            <label class="option"><input type="checkbox" name="dates" value="4-5"> 4–5 липня</label>
+            <label class="option"><input type="checkbox" name="dates" value="11-12"> 11–12 липня</label>
+            <label class="option"><input type="checkbox" name="dates" value="18-19"> 18–19 липня</label>
+            <label class="option"><input type="checkbox" name="dates" value="25-26"> 25–26 липня</label>
+        </div>
+        <div class="button-group">
+            <button class="survey-start-btn back-btn" data-prev="screen-6-1">⬅ Назад</button>
+            <button class="survey-start-btn" data-next="screen-6-3">Далі ➡</button>
+        </div>
+    </div>
+</section>
+<section class="survey-hero" id="screen-6-3">
+    <div class="survey-overlay"></div>
+    <div class="survey-content">
+        <div class="question-block">
+            <p class="question-title">4️⃣ У які дати ти МОЖЕШ служити? 📅 <br>(можна обрати кілька)</p>
+            <label class="option"><input type="checkbox" name="dates" value="1-2"> 1–2 серпня</label>
+            <label class="option"><input type="checkbox" name="dates" value="8-9"> 8–9 серпня</label>
+            <label class="option"><input type="checkbox" name="dates" value="15-16"> 15–16 серпня</label>
+            <label class="option"><input type="checkbox" name="dates" value="22-23"> 22–23 серпня</label>
+            <label class="option"><input type="checkbox" name="dates" value="29-30"> 29–30 серпня</label>
+        </div>
+        <div class="button-group">
+            <button class="survey-start-btn back-btn" data-prev="screen-6-2">⬅ Назад</button>
+            <button class="survey-start-btn" data-next="screen-7">Далі ➡</button>
+        </div>
+    </div>
+</section>
+
+<!-- ===== ЕКРАН 7 - ПІДГОТОВКА (Radio) ===== -->
+<section class="survey-hero" id="screen-7">
+    <div class="survey-overlay"></div>
+    <div class="survey-content">
+        <div class="question-block">
+            <p class="question-title">5️⃣ Наскільки ти готовий/готова долучатися до підготовки? 💪</p>
+            <label class="option"><input type="radio" name="prep" value="regular"><span class="checkmark">🟢</span> Регулярно</label>
+            <label class="option"><input type="radio" name="prep" value="partial"><span class="checkmark">🟡</span> Частково</label>
+            <label class="option"><input type="radio" name="prep" value="only_camp"><span class="checkmark">🔵</span> Лише під час табору</label>
+            <label class="option"><input type="radio" name="prep" value="not_sure"><span class="checkmark">⚪</span> Поки не знаю</label>
+        </div>
+        <div class="button-group">
+            <button class="survey-start-btn back-btn" data-prev="screen-6-2">⬅ Назад</button>
+            <button class="survey-start-btn" data-next="screen-8">Далі ➡</button>
+        </div>
+    </div>
+</section>
+<!-- ===== ЕКРАН 8 - Духовний блок 1 ===== -->
+<section class="survey-hero" id="screen-8">
+    <div class="survey-overlay"></div>
+    <div class="survey-content">
+        <div class="question-block">
+            <p class="question-title">6️⃣ Як ти відчуваєш своє духовне налаштування на служіння в таборі? 🙏</p>
+            <label class="option1"><input type="radio" name="spirit" value="joyful"><span class="checkmark">🌞</span> <span class="option-text">Відчуваю поклик і радість служити</span></label>
+            <label class="option1"><input type="radio" name="spirit" value="need_support"><span class="checkmark">🌿</span> <span class="option-text">Є бажання, але потребую підкріплення</span></label>
+            <label class="option1"><input type="radio" name="spirit" value="hard_time"><span class="checkmark">⛅</span> <span class="option-text">Хочу служити, але зараз непростий період</span></label>
+            <label class="option1"><input type="radio" name="spirit" value="not_sure"><span class="checkmark">❓</span><span class="option-text"> Поки не впевнений/впевнена</span></label>
+        </div>
+        <div class="button-group">
+            <button class="survey-start-btn back-btn" data-prev="screen-7">⬅ Назад</button>
+            <button class="survey-start-btn" data-next="screen-9">Далі ➡</button>
+        </div>
+    </div>
+</section>
+
+<!-- ===== ЕКРАН 9 - Духовний блок 2 ===== -->
+<section class="survey-hero" id="screen-9">
+    <div class="survey-overlay"></div>
+    <div class="survey-content">
+        <div class="question-block">
+            <p class="question-title">7️⃣ Що для тебе найважливіше в духовній атмосфері табору?<br> (обери до 2–3)</p>
+            <label class="option"><input type="checkbox" name="spirit_importance" value="prayer"><span class="checkmark">🙏</span> Спільна молитва команди</label>
+            <label class="option"><input type="checkbox" name="spirit_importance" value="unity"><span class="checkmark">💛</span> Єдність і підтримка</label>
+            <label class="option"><input type="checkbox" name="spirit_importance" value="vision"><span class="checkmark">🔮</span> Чітке духовне бачення</label>
+            <label class="option"><input type="checkbox" name="spirit_importance" value="live_word"><span class="checkmark">📖</span> Живе Слово для дітей</label>
+            <label class="option"><input type="checkbox" name="spirit_importance" value="growth"><span class="checkmark">🌱</span> Особистий духовний ріст</label>
+            <label class="option"><input type="checkbox" name="spirit_importance" value="discipline"><span class="checkmark">⚡</span> Дисципліна в служінні</label>
+        </div>
+        <div class="button-group">
+            <button class="survey-start-btn back-btn" data-prev="screen-8">⬅ Назад</button>
+            <button class="survey-start-btn" data-next="screen-10">Далі ➡</button>
+        </div>
+    </div>
+</section>
+
+<!-- ===== ЕКРАН 10 - Духовна підготовка ===== -->
+<section class="survey-hero" id="screen-10">
+    <div class="survey-overlay"></div>
+    <div class="survey-content">
+        <div class="question-block">
+            <p class="question-title">8️⃣ Чи готовий/готова ти долучатися до духовної підготовки? 🙏</p>
+            <label class="option"><input type="radio" name="spirit_prep" value="yes"><span class="checkmark">✅</span> Так, регулярні молитви</label>
+            <label class="option"><input type="radio" name="spirit_prep" value="periodic"><span class="checkmark">⏱️</span> Періодично</label>
+            <label class="option"><input type="radio" name="spirit_prep" value="only_camp"><span class="checkmark">🏕️</span> Лише під час табору</label>
+            <label class="option"><input type="radio" name="spirit_prep" value="not_ready"><span class="checkmark">❓</span> Поки не готовий/готова</label>
+        </div>
+        <div class="button-group">
+            <button class="survey-start-btn back-btn" data-prev="screen-9">⬅ Назад</button>
+            <button class="survey-start-btn" data-next="screen-11">Далі ➡</button>
+        </div>
+    </div>
+</section>
+
+<!-- ===== ЕКРАН 11 - Молитовні потреби ===== -->
+<section class="survey-hero" id="screen-11">
+    <div class="survey-overlay"></div>
+    <div class="survey-content">
+        <div class="question-block">
+            <p class="question-title">9️⃣ За що варто особливо молитися щодо табору 2026? ✍️</p>
+            <textarea class="survey-textarea" placeholder="Напишіть вашу відповідь тут..."></textarea>
+        </div>
+        <div class="button-group">
+            <button class="survey-start-btn back-btn" data-prev="screen-10">⬅ Назад</button>
+            <button class="survey-start-btn" data-next="screen-12">Далі ➡</button>
+        </div>
+    </div>
+</section>
+
+<!-- ===== ЕКРАН 12 - Слово / вірш ===== -->
+<section class="survey-hero" id="screen-12">
+    <div class="survey-overlay"></div>
+    <div class="survey-content">
+        <div class="question-block">
+            <p class="question-title">🔟 Слово / вірш / образ, який Бог кладе тобі на серце щодо табору 2026: ✍️</p>
+            <textarea class="survey-textarea" placeholder="Напишіть вашу відповідь тут..."></textarea>
+        </div>
+        <div class="button-group">
+            <button class="survey-start-btn back-btn" data-prev="screen-11">⬅ Назад</button>
+            <button class="survey-start-btn send-btn" data-next="screen-13">Відправити ✅</button>
+        </div>
+    </div>
+</section>
+<!-- ===== ЕКРАН 13 - ДЯКУЄМО ===== -->
+<section class="survey-hero" id="screen-13">
+    <div class="survey-overlay"></div>
+    <div class="survey-content">
+        <h1 class="survey-title">🙏 Дякуємо за відповіді!</h1>
+        <h2 class="survey-subtitle">
+            💛 Ваша участь дуже важлива для планування табору 2026.<br>
+            Нехай Бог благословить вас!
+        </h2>
+    </div>
+</section>
+
+<script src="script.js"></script>
 </body>
 </html>
