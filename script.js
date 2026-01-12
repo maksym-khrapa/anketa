@@ -87,10 +87,11 @@ document.querySelector('.send-btn').addEventListener('click', () => {
   }
 })
 .then(() => {
-  alert("Відповіді відправлені 💛");
+
 })
 .catch(err => {
   alert('Помилка відправки 😢');
   console.error(err);
 });
 });
+
